@@ -1,0 +1,20 @@
+class UrlAmigavel {
+       /**
+        * url para retirar acentuação e colocar "_"
+        * @param string $url texto para ser convertido Ex. texte_teste_565
+        * @param bool $type se 1 ou true faz encode HTML entities
+        * @return string limpa sem os caracteres especiais e outros definidos abaixo
+        */
+	public static function getUrlAmigavel($url , $type = null)
+	{
+         $pesquisa = array(" ","!","$","#","*","§",".",",","/","-","\\","(",")",":","&","º","ª");
+            $sub = array("_","","","","","","","","_","","","","","","","","");
+            
+            if (!empty($type)) {
+                $url = htmlentities($url);
+            }
+            
+            $url = substr($url, 0,150);
+            return strtolower(str_replace($pesquisa,$sub,preg_replace("/&([a-z])[a-z]+;/i", "$1", trim(strip_tags($url)))));
+	}
+}
