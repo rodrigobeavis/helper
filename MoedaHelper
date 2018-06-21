@@ -1,0 +1,22 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+function tofloat($string_currency)
+{
+	if (!empty($string_currency)) {
+
+		$source = array('.', ',');
+		$replace = array('', '.');
+		return  str_replace($source, $replace, $string_currency);
+	}
+	return 0.00;
+}
+
+function toReal($float)
+{
+	if (!empty($float)) {
+		return  number_format($float,2,',','.');
+	}
+
+	return "0,00";
+}
